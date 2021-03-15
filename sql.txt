@@ -1,0 +1,54 @@
+--Create Tables
+
+ CREATE TABLE  new_Future(
+        Rank int,
+        Restaurant VARCHAR,
+        YOY_Sales int,
+        Sales  int ,
+        YOY_Units int,
+        Franchising Varchar,
+        City Varchar,
+        State Varchar
+  );
+
+ SELECT * FROM "new_Future";
+
+CREATE TABLE new_Top250(
+         Rank int,
+         Restaurant VARCHAR,
+         YOY_Sales int, 	
+          Sales  int ,
+          YOY_Units int,
+          Segment Varchar
+);
+
+ SELECT * FROM "new_Top250";
+
+
+--Change DataTypes
+
+ALTER TABLE "new_Top250"
+ALTER COLUMN "YOY_Sales" TYPE decimal
+USING "YOY_Sales" :: decimal(6,2);
+
+ALTER TABLE "new_Top250"
+ALTER COLUMN "YOY_Units" TYPE decimal
+USING "YOY_Units" :: decimal(6,2);
+
+ALTER TABLE "new_Future"
+ALTER COLUMN "YOY_Sales" TYPE decimal
+USING "YOY_Sales" :: decimal(6,2);
+
+ALTER TABLE "new_Future"
+ALTER COLUMN "YOY_Units" TYPE decimal
+USING "YOY_Units" :: decimal(6,2);
+
+--Join Tables
+
+SELECT "new_Top250"."Restaurant", "new_Top250"."YOY_Sales", "new_Top250"."Sales", "new_Top250"."YOY_Units", "new_Future"."Restaurant", "new_Future"."YOY_Sales", "new_Future"."Sales", "new_Future"."YOY_Units"
+ FROM "new_Future"
+JOIN "new_Top250"
+ON  "new_Future"."Rank"= "new_Top250"."Rank";
+
+
+
